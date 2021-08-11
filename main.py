@@ -51,15 +51,16 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
-    
-    #print('Calculando la Mejor Ruta') Se le quita el #
-    #print('Calculando Cantida consumida de Combustible') Se le quita el #
-    
+
 '''from ListaVertical import ListaVertical
 from ListaHorizontal import ListaHorizontal
+from ListaCabeceraFila import ListaCabeceraFila
+from ListaCabeceraColumna import ListaCabeceraColumna
 
 ListaV = ListaVertical()
 ListaH = ListaHorizontal()
+ListaCF = ListaCabeceraFila()
+ListaCC = ListaCabeceraColumna()
 
 print("Vertical")
 ListaV.Insertar(1,0,1)
@@ -79,7 +80,37 @@ ListaH.Insertar(4,4,0)
 ListaH.Insertar(5,5,0)
 ListaH.Insertar(6,6,0)
 
-ListaH.RecorrerLista()'''
+ListaH.RecorrerLista()
+
+print("Lista Cabecera Vertical")
+ListaCF.Insertar(1)
+ListaCF.Insertar(2)
+ListaCF.Insertar(3)
+ListaCF.Insertar(4)
+ListaCF.Insertar(5)
+ListaCF.Insertar(6)
+
+ListaCF.RecorrerLista()
+
+if ListaCF.Buscar(15) != None:
+    print('La Cabecera Vertical existe')
+else:
+    print('La Cabecera Vertical no existe')
+
+print("Lista Cabecera Horizontal")
+ListaCC.Insertar(1)
+ListaCC.Insertar(2)
+ListaCC.Insertar(3)
+ListaCC.Insertar(4)
+ListaCC.Insertar(5)
+ListaCC.Insertar(6)
+
+ListaCC.RecorrerLista()
+
+if ListaCC.Buscar(15) != None:
+    print('La Cabecera Horizontal existe')
+else:
+    print('La Cabecera Horizontal no existe')'''
 
 if __name__ == '__main__':
     print("1. Cargar Archivo")
