@@ -25,7 +25,7 @@ class Matriz:
         print("Se inserto: ", dato, " en la pos: ", x, ",", y)
     
     def Llenar(self, tamañox, tamañoy, gasolina):
-        for x in range(tamañox):
-            for j in range(tamañoy):
+        for x in range(1, tamañox + 1):
+            for j in range(1, tamañoy + 1):
                 self.Insertar(x, j, gasolina)
-                gasolina += gasolina
+                #data += data

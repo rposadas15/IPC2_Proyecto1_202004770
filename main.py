@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+from Matriz import Matriz
+Contenido_Matriz = Matriz()
 
 #C:\Users\ronal\Downloads\terrenos.xml
 def LeerXML(ruta):
@@ -51,6 +53,8 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
+
+    #Contenido_Matriz.Llenar(ejeX,ejeY,gasolina)
 
 '''from ListaVertical import ListaVertical
 from ListaHorizontal import ListaHorizontal
