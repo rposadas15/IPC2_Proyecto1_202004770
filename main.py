@@ -5,7 +5,7 @@ def LeerXML(ruta):
     mytree = ET.parse(ruta)
     myroot = mytree.getroot()
     #print(myroot.tag)
-    return myroot    
+    return myroot
 
 ejeX = 0
 ejeY = 0
@@ -56,11 +56,13 @@ def ProcesarTerreno(xml, dato):
 from ListaHorizontal import ListaHorizontal
 from ListaCabeceraFila import ListaCabeceraFila
 from ListaCabeceraColumna import ListaCabeceraColumna
+from Matriz import Matriz
 
 ListaV = ListaVertical()
 ListaH = ListaHorizontal()
 ListaCF = ListaCabeceraFila()
 ListaCC = ListaCabeceraColumna()
+Fin = Matriz()
 
 print("Vertical")
 ListaV.Insertar(1,0,1)
@@ -92,7 +94,7 @@ ListaCF.Insertar(6)
 
 ListaCF.RecorrerLista()
 
-if ListaCF.Buscar(15) != None:
+if ListaCF.Buscar(5) != None:
     print('La Cabecera Vertical existe')
 else:
     print('La Cabecera Vertical no existe')
@@ -107,10 +109,13 @@ ListaCC.Insertar(6)
 
 ListaCC.RecorrerLista()
 
-if ListaCC.Buscar(15) != None:
+if ListaCC.Buscar(5) != None:
     print('La Cabecera Horizontal existe')
 else:
-    print('La Cabecera Horizontal no existe')'''
+    print('La Cabecera Horizontal no existe')
+
+print('Matriz Ortogonal')
+Fin.Llenar(3,3)'''
 
 if __name__ == '__main__':
     print("1. Cargar Archivo")
