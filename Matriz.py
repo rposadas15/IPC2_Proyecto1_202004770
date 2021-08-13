@@ -23,10 +23,13 @@ class Matriz:
         Bandera1.columna.Insertar(dato, x, y)
         Bandera2.fila.Insertar(dato, x, y)
         print("Se inserto: ", dato, " en la pos: ", x, ",", y)
+
+    def LlegarDestino():
+        return True
     
-    def Llenar(self, tamañox, tamañoy, gasolina = []):
+    '''def Llenar(self, tamañox, tamañoy, gasolina = []):
         a = 0
         for x in range(1, tamañox + 1):
             for j in range(1, tamañoy + 1):
                 self.Insertar(x, j, int(gasolina[a]))
-                a = a + 1
+                a = a + 1'''
