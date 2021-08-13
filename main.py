@@ -25,6 +25,8 @@ def ProcesarTerreno(xml, dato):
     global PosicionI_Y
     global PosicionF_X
     global PosicionF_Y
+
+    locales = []
     
     for x in range(len(xml)):
         if xml[x].attrib['nombre'] == dato:
@@ -38,11 +40,18 @@ def ProcesarTerreno(xml, dato):
             for j in xml[x].findall('posicionfin'):
                 PosicionF_X = int(j.find('x').text)
                 PosicionF_Y = int(j.find('y').text)
-            for j in xml[x]:
-                print(j.text)
+            for j in xml[x].findall('posicion'):                
+                locales.append(int(j.text))
+            #print(locales)
         #else:
-        #    None
-        
+        #    None    
+
+    a = 0
+    for x in range(1, ejeX + 1):
+        for j in range(1, ejeY + 1):
+            Contenido_Matriz.Insertar(x, j, int(locales[a]))
+            a = a + 1
+
     if ejeX > 0:
         print('Terreno ', nombre_del_terreno, ' encontrado')
         print('Tamaño ', ejeX, ejeY)
@@ -53,8 +62,6 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
-
-    #Contenido_Matriz.Llenar(ejeX,ejeY,gasolina)
 
 '''from ListaVertical import ListaVertical
 from ListaHorizontal import ListaHorizontal
