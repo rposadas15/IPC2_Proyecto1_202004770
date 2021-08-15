@@ -1,4 +1,6 @@
 import xml.etree.ElementTree as ET
+from Matriz import Matriz
+Contenido_Matriz = Matriz()
 
 #C:\Users\ronal\Downloads\terrenos.xml
 def LeerXML(ruta):
@@ -36,8 +38,8 @@ def ProcesarTerreno(xml, dato):
             for j in xml[x].findall('posicionfin'):
                 PosicionF_X = int(j.find('x').text)
                 PosicionF_Y = int(j.find('y').text)
-            for j in xml[x]:
-                print(j.text)
+            for j in xml[x].findall('posicion'):
+                Contenido_Matriz.Insertar(j.attrib['x'], j.attrib['y'], int(j.text))
         #else:
         #    None
         
