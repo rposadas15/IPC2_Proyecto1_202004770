@@ -1,13 +1,11 @@
 import xml.etree.ElementTree as ET
-from Matriz import Matriz
-Contenido_Matriz = Matriz()
 
 #C:\Users\ronal\Downloads\terrenos.xml
 def LeerXML(ruta):
     mytree = ET.parse(ruta)
     myroot = mytree.getroot()
     #print(myroot.tag)
-    return myroot
+    return myroot    
 
 ejeX = 0
 ejeY = 0
@@ -38,11 +36,11 @@ def ProcesarTerreno(xml, dato):
             for j in xml[x].findall('posicionfin'):
                 PosicionF_X = int(j.find('x').text)
                 PosicionF_Y = int(j.find('y').text)
-            for j in xml[x].findall('posicion'):
-                Contenido_Matriz.Insertar(j.attrib['x'], j.attrib['y'], int(j.text))
+            for j in xml[x]:
+                print(j.text)
         #else:
         #    None
-
+        
     if ejeX > 0:
         print('Terreno ', nombre_del_terreno, ' encontrado')
         print('Tamaño ', ejeX, ejeY)
@@ -58,13 +56,11 @@ def ProcesarTerreno(xml, dato):
 from ListaHorizontal import ListaHorizontal
 from ListaCabeceraFila import ListaCabeceraFila
 from ListaCabeceraColumna import ListaCabeceraColumna
-from Matriz import Matriz
 
 ListaV = ListaVertical()
 ListaH = ListaHorizontal()
 ListaCF = ListaCabeceraFila()
 ListaCC = ListaCabeceraColumna()
-Fin = Matriz()
 
 print("Vertical")
 ListaV.Insertar(1,0,1)
@@ -96,7 +92,7 @@ ListaCF.Insertar(6)
 
 ListaCF.RecorrerLista()
 
-if ListaCF.Buscar(5) != None:
+if ListaCF.Buscar(15) != None:
     print('La Cabecera Vertical existe')
 else:
     print('La Cabecera Vertical no existe')
@@ -111,13 +107,10 @@ ListaCC.Insertar(6)
 
 ListaCC.RecorrerLista()
 
-if ListaCC.Buscar(5) != None:
+if ListaCC.Buscar(15) != None:
     print('La Cabecera Horizontal existe')
 else:
-    print('La Cabecera Horizontal no existe')
-
-print('Matriz Ortogonal')
-Fin.Llenar(3,3)'''
+    print('La Cabecera Horizontal no existe')'''
 
 if __name__ == '__main__':
     print("1. Cargar Archivo")

@@ -32,15 +32,6 @@ class Nodo:
         return self.abajo
     
     #Set
-    def setDato(self, dato):
-        self.dato = dato
-
-    def setX(self, x):
-        self.x = x
-
-    def setY(self, y):
-        self.y = y
-
     def setDerecha(self, derecha):
         self.derecha = derecha
 
