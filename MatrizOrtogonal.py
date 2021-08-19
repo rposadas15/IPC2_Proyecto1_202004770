@@ -86,18 +86,22 @@ class Matriz:
             eFila = eFila.siguiente
         return print('Ese Nodo no Existe')
 
-    def Recorrido(self, IX, IY, FX, FY):
-        eFila = self.eFilas.primero        
+    def Recorrido(self, IX, IY, FX, FY, gasolina):
+        gasolina = 0
+        eFila = self.eFilas.primero
         while eFila != None:
             actual = eFila.Acceso_Nodo
             if int(actual.fila) == IX:
                 while actual != None:
-                    if int(actual.columna) == IY:                        
+                    if int(actual.columna) == IY:
                         while int(actual.columna) <= FY:
-                            if int(actual.columna) == FY:                                
+                            gasolina += actual.valor
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor
                                 while int(actual.fila) <= FX:
+                                    gasolina += actual.valor
                                     if int(actual.fila) == FX:
-                                        return actual.columna,actual.fila
+                                        return actual.columna, actual.fila, gasolina
                                     actual = actual.abajo
                             actual = actual.derecha
                     actual = actual.derecha

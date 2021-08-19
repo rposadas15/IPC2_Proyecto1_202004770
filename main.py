@@ -16,6 +16,7 @@ PosicionI_X = 0
 PosicionI_Y = 0
 PosicionF_X = 0
 PosicionF_Y = 0
+gas = 0
 
 def ProcesarTerreno(xml, dato):
     global nombre_del_terreno
@@ -25,6 +26,7 @@ def ProcesarTerreno(xml, dato):
     global PosicionI_Y
     global PosicionF_X
     global PosicionF_Y
+    global gas
     
     for x in range(len(xml)):
         if xml[x].attrib['nombre'] == dato:
@@ -54,8 +56,9 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
-        a,b = Contenido_Matriz.Recorrido(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y)
+        a, b , c = Contenido_Matriz.Recorrido(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
         print('llego a ', a, b)
+        print('gasolina', c)
     else:
         print('Ese terreno no existe')
         print('Tamaño ', ejeX, ejeY)
@@ -85,6 +88,7 @@ if __name__ == '__main__':
             PosicionI_Y = 0
             PosicionF_X = 0
             PosicionF_Y = 0
+            gas = 0
             nombre_terreno = input('Ingrese el nombre del terreno: ')
             ProcesarTerreno(LeerXML(archivo), nombre_terreno)
         elif numero == 3:
