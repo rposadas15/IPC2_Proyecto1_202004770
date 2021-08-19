@@ -1,4 +1,5 @@
-from Tipos_Nodos import Nodo, NodoEncabezado
+from NodoPrincipal import Nodo
+from NodoEncabezado import NodoEncabezado
 from EncabezadosMatriz import ListaEncabezado
 
 class Matriz:
@@ -68,7 +69,7 @@ class Matriz:
             if int(actual.fila) == IX:                
                 while actual != None:                    
                     if int(actual.columna) == IY:
-                        return print(actual.fila,actual.columna,actual.valor)
+                        return print('Inicio',actual.fila,actual.columna,actual.valor)
                     actual = actual.derecha
             eFila = eFila.siguiente
         return print('Ese Nodo no Existe')
@@ -80,7 +81,25 @@ class Matriz:
             if int(actual.fila) == FX:                
                 while actual != None:                    
                     if int(actual.columna) == FY:
-                        return print(actual.fila, actual.columna, actual.valor)
+                        return print('Final',actual.fila, actual.columna, actual.valor)
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def Recorrido(self, IX, IY, FX, FY):
+        eFila = self.eFilas.primero        
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:
+                while actual != None:
+                    if int(actual.columna) == IY:                        
+                        while int(actual.columna) <= FY:
+                            if int(actual.columna) == FY:                                
+                                while int(actual.fila) <= FX:
+                                    if int(actual.fila) == FX:
+                                        return actual.columna,actual.fila
+                                    actual = actual.abajo
+                            actual = actual.derecha
                     actual = actual.derecha
             eFila = eFila.siguiente
         return print('Ese Nodo no Existe')

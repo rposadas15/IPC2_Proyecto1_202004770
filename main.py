@@ -43,8 +43,8 @@ def ProcesarTerreno(xml, dato):
         #else:
         #    None
 
-    Contenido_Matriz.NodoInicial(PosicionI_X, PosicionI_Y)
-    Contenido_Matriz.NodoFinal(PosicionF_X, PosicionF_Y)
+    #Contenido_Matriz.NodoInicial(PosicionI_X, PosicionI_Y)
+    #Contenido_Matriz.NodoFinal(PosicionF_X, PosicionF_Y)    
     #Contenido_Matriz.RecorrerFilas()
     #Contenido_Matriz.RecorrerColumnas()
     #Contenido_Matriz.Mostrar()
@@ -54,11 +54,15 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
+        a,b = Contenido_Matriz.Recorrido(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y)
+        print('llego a ', a, b)
     else:
         print('Ese terreno no existe')
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
+
+    
 
 if __name__ == '__main__':
     print("1. Cargar Archivo")

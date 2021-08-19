@@ -8,11 +8,3 @@ class Nodo:
         self.izquierda = None
         self.arriba = None
         self.abajo = None
-    
-class NodoEncabezado:
-
-    def __init__(self, id):
-        self.id = id
-        self.siguiente = None
-        self.anterior = None
-        self.Acceso_Nodo = None

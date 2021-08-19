@@ -1,4 +1,8 @@
-from Tipos_Nodos import Nodo, NodoEncabezado
+from xml.etree.ElementTree import fromstring
+
+
+from NodoPrincipal import Nodo
+from NodoEncabezado import NodoEncabezado
 
 class ListaEncabezado:
 
