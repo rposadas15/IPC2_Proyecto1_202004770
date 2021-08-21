@@ -86,7 +86,7 @@ class Matriz:
             eFila = eFila.siguiente
         return print('Ese Nodo no Existe')
 
-    def Recorrido(self, IX, IY, FX, FY, gasolina):
+    def RecorridoAD(self, IX, IY, FX, FY, gasolina):
         gasolina = 0
         eFila = self.eFilas.primero
         while eFila != None:
@@ -95,14 +95,36 @@ class Matriz:
                 while actual != None:
                     if int(actual.columna) == IY:
                         while int(actual.columna) <= FY:
-                            gasolina += actual.valor
+                            gasolina += actual.valor                            
                             if int(actual.columna) == FY:
                                 gasolina -= actual.valor
                                 while int(actual.fila) <= FX:
                                     gasolina += actual.valor
                                     if int(actual.fila) == FX:
-                                        return actual.columna, actual.fila, gasolina
+                                        return actual.fila, actual.columna, gasolina
                                     actual = actual.abajo
+                            actual = actual.derecha
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def RecorridoAI(self, IX, IY, FX, FY, gasolina):
+        gasolina = 0
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:                
+                while actual != None:
+                    if int(actual.columna) == IY:
+                        while int(actual.columna) <= FY:
+                            gasolina += actual.valor                            
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor                                
+                                while int(actual.fila) >= FX:
+                                    gasolina += actual.valor
+                                    if int(actual.fila) == FX:
+                                        return actual.fila, actual.columna, gasolina
+                                    actual = actual.arriba
                             actual = actual.derecha
                     actual = actual.derecha
             eFila = eFila.siguiente

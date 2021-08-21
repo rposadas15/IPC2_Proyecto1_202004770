@@ -56,9 +56,26 @@ def ProcesarTerreno(xml, dato):
         print('Tamaño ', ejeX, ejeY)
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
-        a, b , c = Contenido_Matriz.Recorrido(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
-        print('llego a ', a, b)
-        print('gasolina', c)
+        print('------------------------')
+        if PosicionI_X > PosicionF_X:
+            if PosicionI_Y > PosicionF_Y:                
+                #print('arriba y izquierda')
+                print('pendiente')              
+            elif PosicionI_Y < PosicionF_Y: #Ya
+                #print('abajo y izquierda')
+                a, b , c = Contenido_Matriz.RecorridoAI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                print('llego a ', a, b)
+                print('gasolina', c)         
+        elif PosicionI_X < PosicionF_X:
+            if PosicionI_Y > PosicionF_Y:
+                #print('arriba y derecha')
+                print('pendiente')
+            elif PosicionI_Y < PosicionF_Y: #Ya
+                #print('abajo y derecha')
+                a, b , c = Contenido_Matriz.RecorridoAD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                print('llego a ', a, b)
+                print('gasolina', c)
+        print('------------------------')
     else:
         print('Ese terreno no existe')
         print('Tamaño ', ejeX, ejeY)
