@@ -57,22 +57,26 @@ def ProcesarTerreno(xml, dato):
         print('Inicio ', PosicionI_X, PosicionI_Y)
         print('Fin ', PosicionF_X, PosicionF_Y)
         print('------------------------')
-        if PosicionI_X > PosicionF_X:
-            if PosicionI_Y > PosicionF_Y:                
-                #print('arriba y izquierda')
-                print('pendiente')              
+        if PosicionI_X >= PosicionF_X:            
+            if PosicionI_Y > PosicionF_Y: #Ya
+                #print('arriba y izquierda')                
+                a, b , c = Contenido_Matriz.RecorridoArI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                print('llego a ', a, b)
+                print('gasolina', c)
             elif PosicionI_Y < PosicionF_Y: #Ya
-                #print('abajo y izquierda')
-                a, b , c = Contenido_Matriz.RecorridoAI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                #print('abajo y izquierda')                
+                a, b , c = Contenido_Matriz.RecorridoAbI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
                 print('llego a ', a, b)
                 print('gasolina', c)         
         elif PosicionI_X < PosicionF_X:
-            if PosicionI_Y > PosicionF_Y:
+            if PosicionI_Y >= PosicionF_Y: #Ya                
                 #print('arriba y derecha')
-                print('pendiente')
+                a, b , c = Contenido_Matriz.RecorridoArD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                print('llego a ', a, b)
+                print('gasolina', c)
             elif PosicionI_Y < PosicionF_Y: #Ya
                 #print('abajo y derecha')
-                a, b , c = Contenido_Matriz.RecorridoAD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
+                a, b , c = Contenido_Matriz.RecorridoAbD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
                 print('llego a ', a, b)
                 print('gasolina', c)
         print('------------------------')
