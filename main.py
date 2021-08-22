@@ -3,6 +3,7 @@ from MatrizOrtogonal import Matriz
 Contenido_Matriz = Matriz()
 
 #C:\Users\ronal\Downloads\terrenos.xml
+#C:/Users/ronal/Downloads/terreno.xml
 def LeerXML(ruta):
     mytree = ET.parse(ruta)
     myroot = mytree.getroot()
@@ -51,42 +52,65 @@ def ProcesarTerreno(xml, dato):
     #Contenido_Matriz.RecorrerColumnas()
     #Contenido_Matriz.Mostrar()
         
-    if ejeX > 0:
-        print('Terreno ', nombre_del_terreno, ' encontrado')
-        print('Tamaño ', ejeX, ejeY)
-        print('Inicio ', PosicionI_X, PosicionI_Y)
-        print('Fin ', PosicionF_X, PosicionF_Y)
+    if ejeX > 0:        
+        #print('Tamaño ', ejeX, ejeY)
+        #print('Inicio ', PosicionI_X, PosicionI_Y)
+        #print('Fin ', PosicionF_X, PosicionF_Y)
         print('------------------------')
+        print('     Terreno ', nombre_del_terreno, ' encontrado')
+        print(' - Calculando Ruta')
+        print(' - Calculando Combustible a usar')
+        print('')
         if PosicionI_X >= PosicionF_X:            
             if PosicionI_Y > PosicionF_Y: #Ya
                 #print('arriba y izquierda')                
                 a, b , c = Contenido_Matriz.RecorridoArI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
-                print('llego a ', a, b)
-                print('gasolina', c)
+                print('Llego a la casilla', a, b)
+                print('Combustible usado', c)
             elif PosicionI_Y < PosicionF_Y: #Ya
                 #print('abajo y izquierda')                
                 a, b , c = Contenido_Matriz.RecorridoAbI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
-                print('llego a ', a, b)
-                print('gasolina', c)         
+                print('Llego a la casilla', a, b)
+                print('Combustible usado', c)         
         elif PosicionI_X < PosicionF_X:
             if PosicionI_Y >= PosicionF_Y: #Ya                
                 #print('arriba y derecha')
                 a, b , c = Contenido_Matriz.RecorridoArD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
-                print('llego a ', a, b)
-                print('gasolina', c)
+                print('Llego a la casilla', a, b)
+                print('Combustible usado', c)
             elif PosicionI_Y < PosicionF_Y: #Ya
                 #print('abajo y derecha')
                 a, b , c = Contenido_Matriz.RecorridoAbD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas)
-                print('llego a ', a, b)
-                print('gasolina', c)
+                print('Llego a la casilla', a, b)
+                print('Combustible usado', c)
         print('------------------------')
     else:
         print('Ese terreno no existe')
-        print('Tamaño ', ejeX, ejeY)
-        print('Inicio ', PosicionI_X, PosicionI_Y)
-        print('Fin ', PosicionF_X, PosicionF_Y)
+        #print('Tamaño ', ejeX, ejeY)
+        #print('Inicio ', PosicionI_X, PosicionI_Y)
+        #print('Fin ', PosicionF_X, PosicionF_Y)
 
-    
+def EscribirXML(ruta):
+    if ejeX > 0:
+        print('------------------------')
+        print('Se escribio el archivo xml')
+        if PosicionI_X >= PosicionF_X:            
+            if PosicionI_Y > PosicionF_Y: #Ya
+                #print('arriba y izquierda')
+                Contenido_Matriz.XMLArI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas, ruta, nombre_del_terreno)                
+            elif PosicionI_Y < PosicionF_Y: #Ya
+                #print('abajo y izquierda')                
+                Contenido_Matriz.XMLAbI(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas, ruta, nombre_del_terreno)                
+        elif PosicionI_X < PosicionF_X:
+            if PosicionI_Y >= PosicionF_Y: #Ya           
+                #print('arriba y derecha')
+                Contenido_Matriz.XMLArD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas, ruta, nombre_del_terreno)                
+            elif PosicionI_Y < PosicionF_Y: #Ya
+                #print('abajo y derecha')
+                Contenido_Matriz.XMLAbD(PosicionI_X, PosicionI_Y, PosicionF_X,PosicionF_Y, gas, ruta, nombre_del_terreno)
+        print('------------------------')
+    else:
+        print('Ese terreno no existe')
 
 if __name__ == '__main__':
     print("1. Cargar Archivo")
@@ -114,6 +138,7 @@ if __name__ == '__main__':
             ProcesarTerreno(LeerXML(archivo), nombre_terreno)
         elif numero == 3:
             escribir = input('Ingrese la ruta especificada: ')
+            EscribirXML(escribir)
         elif numero == 4:
             print(' -Ronaldo Javier Posadas Guerra')
             print(' -202004770')

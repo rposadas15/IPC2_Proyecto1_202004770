@@ -1,6 +1,7 @@
 from NodoPrincipal import Nodo
 from NodoEncabezado import NodoEncabezado
 from EncabezadosMatriz import ListaEncabezado
+import xml.etree.cElementTree as ET
 
 class Matriz:
 
@@ -168,6 +169,174 @@ class Matriz:
                                     gasolina += actual.valor
                                     if int(actual.fila) == FX:
                                         return actual.fila, actual.columna, gasolina
+                                    actual = actual.arriba
+                            actual = actual.izquierda
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def XMLAbD(self, IX, IY, FX, FY, gasolina, ruta, nombre):
+        root = ET.Element("terreno", nombre = str(nombre))
+        doc1 = ET.SubElement(root, "posicioninicio")
+        nodo1 = ET.SubElement(doc1, "x")
+        nodo1.text = str(IX)
+        nodo2 = ET.SubElement(doc1, "y")
+        nodo2.text = str(IY)
+        doc2 = ET.SubElement(root, "posicionfin")
+        nodo1 = ET.SubElement(doc2, "x")
+        nodo1.text = str(FX)
+        nodo2 = ET.SubElement(doc2, "y")
+        nodo2.text = str(FY)        
+
+        gasolina = 0
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:
+                while actual != None:
+                    if int(actual.columna) == IY:
+                        while int(actual.columna) <= FY:
+                            nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                            nodo.text = str(actual.valor)
+                            gasolina += actual.valor                           
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor                                
+                                while int(actual.fila) <= FX:
+                                    nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                                    nodo.text = str(actual.valor)
+                                    gasolina += actual.valor
+                                    if int(actual.fila) == FX:
+                                        doc3 = ET.SubElement(root, "combustible")
+                                        doc3.text = str(gasolina)
+                                        arbol = ET.ElementTree(root)        
+                                        arbol.write(ruta)                                        
+                                        return True#actual.fila, actual.columna, gasolina
+                                    actual = actual.abajo
+                            actual = actual.derecha
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def XMLAbI(self, IX, IY, FX, FY, gasolina, ruta, nombre):
+        root = ET.Element("terreno", nombre = str(nombre))
+        doc1 = ET.SubElement(root, "posicioninicio")
+        nodo1 = ET.SubElement(doc1, "x")
+        nodo1.text = str(IX)
+        nodo2 = ET.SubElement(doc1, "y")
+        nodo2.text = str(IY)
+        doc2 = ET.SubElement(root, "posicionfin")
+        nodo1 = ET.SubElement(doc2, "x")
+        nodo1.text = str(FX)
+        nodo2 = ET.SubElement(doc2, "y")
+        nodo2.text = str(FY)
+
+        gasolina = 0
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:                
+                while actual != None:
+                    if int(actual.columna) == IY:
+                        while int(actual.columna) <= FY:
+                            nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                            nodo.text = str(actual.valor)
+                            gasolina += actual.valor                            
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor                                
+                                while int(actual.fila) >= FX:
+                                    nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                                    nodo.text = str(actual.valor)
+                                    gasolina += actual.valor
+                                    if int(actual.fila) == FX:
+                                        doc3 = ET.SubElement(root, "combustible")
+                                        doc3.text = str(gasolina)
+                                        arbol = ET.ElementTree(root)        
+                                        arbol.write(ruta)
+                                        return True#actual.fila, actual.columna, gasolina
+                                    actual = actual.arriba
+                            actual = actual.derecha
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def XMLArD(self, IX, IY, FX, FY, gasolina, ruta, nombre):
+        root = ET.Element("terreno", nombre = str(nombre))
+        doc1 = ET.SubElement(root, "posicioninicio")
+        nodo1 = ET.SubElement(doc1, "x")
+        nodo1.text = str(IX)
+        nodo2 = ET.SubElement(doc1, "y")
+        nodo2.text = str(IY)
+        doc2 = ET.SubElement(root, "posicionfin")
+        nodo1 = ET.SubElement(doc2, "x")
+        nodo1.text = str(FX)
+        nodo2 = ET.SubElement(doc2, "y")
+        nodo2.text = str(FY)
+
+        gasolina = 0
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:
+                while actual != None:
+                    if int(actual.columna) == IY:
+                        while int(actual.columna) >= FY:
+                            nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                            nodo.text = str(actual.valor)
+                            gasolina += actual.valor                            
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor
+                                while int(actual.fila) <= FX:
+                                    nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                                    nodo.text = str(actual.valor)
+                                    gasolina += actual.valor
+                                    if int(actual.fila) == FX:
+                                        doc3 = ET.SubElement(root, "combustible")
+                                        doc3.text = str(gasolina)
+                                        arbol = ET.ElementTree(root)        
+                                        arbol.write(ruta)
+                                        return True#actual.fila, actual.columna, gasolina
+                                    actual = actual.abajo
+                            actual = actual.izquierda
+                    actual = actual.derecha
+            eFila = eFila.siguiente
+        return print('Ese Nodo no Existe')
+
+    def XMLArI(self, IX, IY, FX, FY, gasolina, ruta, nombre):
+        root = ET.Element("terreno", nombre = str(nombre))
+        doc1 = ET.SubElement(root, "posicioninicio")
+        nodo1 = ET.SubElement(doc1, "x")
+        nodo1.text = str(IX)
+        nodo2 = ET.SubElement(doc1, "y")
+        nodo2.text = str(IY)
+        doc2 = ET.SubElement(root, "posicionfin")
+        nodo1 = ET.SubElement(doc2, "x")
+        nodo1.text = str(FX)
+        nodo2 = ET.SubElement(doc2, "y")
+        nodo2.text = str(FY)
+
+        gasolina = 0
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            if int(actual.fila) == IX:                
+                while actual != None:
+                    if int(actual.columna) == IY:
+                        while int(actual.columna) >= FY:
+                            nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                            nodo.text = str(actual.valor)
+                            gasolina += actual.valor                            
+                            if int(actual.columna) == FY:
+                                gasolina -= actual.valor                                
+                                while int(actual.fila) >= FX:
+                                    nodo = ET.SubElement(root, "posicion", x = str(actual.fila), y = str(actual.columna))
+                                    nodo.text = str(actual.valor)
+                                    gasolina += actual.valor
+                                    if int(actual.fila) == FX:
+                                        doc3 = ET.SubElement(root, "combustible")
+                                        doc3.text = str(gasolina)
+                                        arbol = ET.ElementTree(root)        
+                                        arbol.write(ruta)
+                                        return True#actual.fila, actual.columna, gasolina
                                     actual = actual.arriba
                             actual = actual.izquierda
                     actual = actual.derecha
