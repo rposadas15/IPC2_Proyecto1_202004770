@@ -112,6 +112,9 @@ def EscribirXML(ruta):
     else:
         print('Ese terreno no existe')
 
+def CrearGrafica(nombre): #Pendiente
+    Contenido_Matriz.Grapho(nombre)
+
 if __name__ == '__main__':
     print("1. Cargar Archivo")
     print("2. Procesar Terreno")
@@ -146,7 +149,9 @@ if __name__ == '__main__':
             print(' -Ingenieria en Ciencias y Sistemas')
             print(' -4to Semestre')
         elif numero == 5:
-            print('5')
+            nombre = input('Ingrese el nombre a graficar: ')
+            CrearGrafica(nombre)
+            #print('5')
         else:
             print('---Opcion no Valida, Intente de Nuevo---')
         print("1. Cargar Archivo")

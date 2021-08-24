@@ -2,6 +2,7 @@ from NodoPrincipal import Nodo
 from NodoEncabezado import NodoEncabezado
 from EncabezadosMatriz import ListaEncabezado
 import xml.etree.cElementTree as ET
+import os
 
 class Matriz:
 
@@ -366,6 +367,30 @@ class Matriz:
                 print(actual.fila,actual.valor)
                 actual = actual.abajo
             eColumna = eColumna.siguiente
+
+    def Grapho(self, nombre):        
+        archivo = open(nombre + ".dot", "w")
+        archivo.write('digraph ' + nombre + ' { ')
+        archivo.write(' bgcolor="purple:pink" style=filled \n')
+        archivo.write('    subgraph cluster1 {fillcolor="blue:green" style=filled \n')
+        archivo.write('     node [shape=circle fillcolor="gold:brown" style=radial gradientangle=180] \n')
+        archivo.write('     a0 [label=< \n <TABLE border="10" cellspacing="10" cellpadding="10" style="rounded" bgcolor="yellow:violet" gradientangle="315">\n')
+        
+        eFila = self.eFilas.primero
+        while eFila != None:
+            actual = eFila.Acceso_Nodo
+            archivo.write('<TR>')
+            while actual != None:                
+                archivo.write("<TD border='3' style='radial' bgcolor='yellow' gradientangle='60'>" + str(actual.valor) + "</TD>")
+                actual = actual.derecha
+            eFila = eFila.siguiente
+            archivo.write('</TR>')
+        
+        archivo.write('</TABLE>>]; \na1 [label="'+nombre+'" shape="box"]\n}\n')
+        archivo.write('}\n')
+        archivo.close()
+        os.system('cmd /c "dot.exe -Tpng ' + (nombre + '.dot') + ' -o ' + (nombre + '.png') + '"')        
+        os.startfile(nombre + '.png')
 
     def Mostrar(self):
         eFila = self.eFilas.primero
