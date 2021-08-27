@@ -1,13 +1,10 @@
-from xml.etree.ElementTree import fromstring
-
-
 from NodoPrincipal import Nodo
 from NodoEncabezado import NodoEncabezado
 
 class ListaEncabezado:
 
-    def __init__(self, primero = None):
-        self.primero = primero
+    def __init__(self):
+        self.primero = None
 
     def setEncabezado(self, Nuevo):
         if self.primero == None:
